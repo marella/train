@@ -23,10 +23,12 @@ setup(
         'numpy',
     ],
     extras_require={
-        'dev': [
+        'examples': [
             'gym',
             'tensorflow',
             'matplotlib',
+        ],
+        'tests': [
             'pytest',
         ],
     },
