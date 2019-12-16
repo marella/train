@@ -19,7 +19,17 @@ setup(
     },
     license='MIT',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'numpy',
+    ],
+    extras_require={
+        'dev': [
+            'gym',
+            'tensorflow',
+            'matplotlib',
+            'pytest',
+        ],
+    },
     zip_safe=False,
     classifiers=[
         'Development Status :: 1 - Planning',
