@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open('README.md') as f:
+with open('README.rst') as f:
     long_description = f.read()
 
 name = 'train'
@@ -8,13 +8,12 @@ name = 'train'
 setup(
     name=name,
     version='0.0.4',
-    description=long_description.splitlines()[0],
+    description=long_description.splitlines()[3],
     long_description=long_description,
-    long_description_content_type='text/markdown',
     author='Ravindra Marella',
     url='https://github.com/marella/{}'.format(name),
     project_urls={
-        'Documentation': 'https://marella.github.io/{}/'.format(name),
+        'Documentation': 'https://{}.readthedocs.io/'.format(name),
         'Source Code': 'https://github.com/marella/{}'.format(name),
     },
     license='MIT',
