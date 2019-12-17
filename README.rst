@@ -13,7 +13,7 @@ Getting Started
 
 An agent has to define at least one method ``act`` which takes the current ``state`` as input:
 
-::
+.. code:: python
 
     from train import Agent
 
@@ -25,7 +25,7 @@ An agent has to define at least one method ``act`` which takes the current ``sta
 
 Create an environment using OpenAI Gym_:
 
-::
+.. code:: python
 
     import gym
 
@@ -33,31 +33,31 @@ Create an environment using OpenAI Gym_:
 
 Initialize your agent using the environment:
 
-::
+.. code:: python
 
     agent = RandomAgent(env=env)
 
 Now you can start training your agent (in this example, the agent acts randomly always and doesn't learn anything):
 
-::
+.. code:: python
 
     scores = agent.train(episodes=100)
 
 You can also visualize how the training progresses but it will slow down the process:
 
-::
+.. code:: python
 
     scores = agent.train(episodes=100, render=True)
 
 Once you are done with the training, you can test it:
 
-::
+.. code:: python
 
     scores = agent.test(episodes=10)
 
 Alternatively, visualize how it performs:
 
-::
+.. code:: python
 
     scores = agent.test(episodes=10, render=True)
 
