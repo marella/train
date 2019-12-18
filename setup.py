@@ -29,6 +29,7 @@ setup(
         ],
         'tests': [
             'pytest',
+            'pytest-mock',
         ],
     },
     zip_safe=False,
