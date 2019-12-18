@@ -36,7 +36,7 @@ class PPO(Agent):
         action = np.random.choice(len(probs), p=probs)
         return action
 
-    def on_train_step_end(self):
+    def on_step_end(self):
         if not self.old.built:
             S = self.transitions.sample(1).state
             self.old.predict(S)  # initialize weights

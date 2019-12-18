@@ -31,7 +31,7 @@ class DQN(Agent):
         Q = self.model.predict(state[None])[0]
         return self.epsilon_greedy(Q)
 
-    def on_train_step_end(self):
+    def on_step_end(self):
         if not self.target.built:
             S = self.transitions.sample(1).state
             self.target.predict(S)  # initialize weights

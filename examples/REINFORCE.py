@@ -26,7 +26,7 @@ class REINFORCE(Agent):
         action = np.random.choice(len(probs), p=probs)
         return action
 
-    def on_train_episode_end(self):
+    def on_episode_end(self):
         batch_size = len(self.transitions)
         data = self.transitions.get()
         self.transitions.reset()

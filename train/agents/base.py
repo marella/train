@@ -10,40 +10,31 @@ All agents should extend the base :class:`~train.Agent` class and implement the 
         def act(self, state):
             ...
 
-When you call :func:`~train.Agent.train` or :func:`~train.Agent.test` methods, an action is selected by calling the :func:`~train.Agent.act` method and passed to the environment. Then the environment returns a reward and observation. This entire transition (S, A, R, S') is saved in a :class:`~train.Transitions` object which can be accessed using ``self.transitions``. When an episode terminates, a new episode is started by resetting the environment and agent.
+When :func:`~train.Agent.train` or :func:`~train.Agent.test` methods are called, an action is selected by calling the :func:`~train.Agent.act` method and passed to the environment. Then the environment returns a reward and observation. This entire transition (S, A, R, S') is saved in a :class:`~train.Transitions` object which can be accessed using ``self.transitions``. When an episode terminates, a new episode is started by resetting the environment and agent.
 
-The following callback methods on agent are triggered when an event such as *end of episode* occurs:
+During training, the following callback methods on agent are called at respective stages:
 
 .. code:: python
 
-    on_episode_begin
-    on_episode_end
     on_step_begin
     on_step_end
+    on_episode_begin
+    on_episode_end
 
-There are also separate callback methods that are called either in training or test mode:
-
-.. code:: python
-
-    on_train_episode_begin, on_test_episode_begin
-    on_train_episode_end, on_test_episode_end
-    on_train_step_begin, on_test_step_begin
-    on_train_step_end, on_test_step_end
-
-These methods combined with :class:`~train.Transitions` object in ``self.transitions`` can be used to implement various algorithms. ``on_train_step_end()`` can be used to implement online algorithms such as TD(0) and ``on_train_episode_end()`` can be used to implement algorithms such as Monte Carlo methods.
+These methods combined with the :class:`~train.Transitions` object in ``self.transitions`` can be used to implement various algorithms. ``on_step_end()`` can be used to implement online algorithms such as TD(0) and ``on_episode_end()`` can be used to implement algorithms such as Monte Carlo methods:
 
 .. code:: python
 
     class MyAgent(Agent):
 
-        def on_train_step_end(self):
+        def on_step_end(self):
             # DQN
-            s, a, r, snext, done = self.transitions.last() # get last transition
+            S, A, R, Snext, dones = self.transitions.sample(32) # randomly sample transitions
             ...
 
-        def on_train_episode_end(self):
+        def on_episode_end(self):
             # REINFORCE
-            S, A, R, Snext, dones = self.transitions.get() # get recent transitions
+            S, A, R, Snext, dones = self.transitions.get() # get all recent transitions
             self.transitions.reset() # reset transitions for next episode
             ...
 
@@ -232,8 +223,9 @@ class BaseAgent(Utils):
         return self._parameters
 
     def trigger(self, name, *args, **kwargs):
-        names = [name]
+        names = []
         if self.training:
+            names.append(name)
             names.append(f'train_{name}')
         else:
             names.append(f'test_{name}')

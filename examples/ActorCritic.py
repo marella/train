@@ -21,7 +21,7 @@ class ActorCritic(Agent):
         action = np.random.choice(len(probs), p=probs)
         return action
 
-    def on_train_step_end(self):
+    def on_step_end(self):
         data = self.transitions.get()  # contains only one transition
         S, A, R, Snext, dones = data
         batch_size = len(self.transitions)

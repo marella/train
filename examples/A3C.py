@@ -38,11 +38,11 @@ def make_agent(env, **kwargs):
             action = np.random.choice(len(probs), p=probs)
             return action
 
-        def on_train_step_end(self):
+        def on_step_end(self):
             if len(self.transitions) == self.t_max:
                 self.learn()
 
-        def on_train_episode_end(self):
+        def on_episode_end(self):
             if len(self.transitions) > 0:
                 self.learn()
 
