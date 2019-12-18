@@ -21,6 +21,15 @@ def zeros_like(a, dtype='float32'):
 
 
 def check_shape(a, b):
+    """Check if the shapes of given values match.
+
+    Args:
+        a (array_like): An object with shape attribute.
+        b (array_like, tuple): An object with shape attribute or a tuple representing shape.
+
+    Raises:
+        Exception: When shapes don't match.
+    """
     if hasattr(a, 'shape'):
         a = a.shape
     if hasattr(b, 'shape'):

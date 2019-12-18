@@ -1,6 +1,6 @@
 .. toctree::
-   :caption: Contents
 
    Home <index>
    agents
+   state
    utils

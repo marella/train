@@ -5,8 +5,12 @@ A library to build and train reinforcement learning agents in OpenAI Gym environ
 
 .. image:: https://travis-ci.org/marella/train.svg?branch=master
     :target: https://travis-ci.org/marella/train
+    :alt: Build Status
+.. image:: https://readthedocs.org/projects/train/badge/?version=latest
+    :target: https://train.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
-Read full documentation `here <https://marella.github.io/train/>`_.
+Read full documentation `here <https://train.readthedocs.io/>`_.
 
 Getting Started
 ***************
@@ -119,7 +123,7 @@ and run:
 
     pytest tests
 
-.. _Agent: https://marella.github.io/train/agent
+.. _Agent: https://train.readthedocs.io/en/latest/agents.html
 .. _examples: https://github.com/marella/train/tree/master/examples
 .. _Gym: https://gym.openai.com/docs/
 .. _TensorFlow: https://www.tensorflow.org/install

@@ -1,6 +1,13 @@
 Agents
 ######
 
-.. autoclass:: train.Agent
+.. automodule:: train.agents.base
+.. currentmodule:: train
 
-.. autoclass:: train.BaseAgent
+
+Agent
+*****
+
+.. autoclass:: Agent
+   :members:
+   :inherited-members:

@@ -1,3 +1,60 @@
+"""
+All agents should extend the base :class:`~train.Agent` class:
+
+.. code:: python
+
+    from train import Agent
+
+    class MyAgent(Agent):
+        ...
+
+An agent has to define at least one method :func:`~train.Agent.act`:
+
+.. code:: python
+
+    class MyAgent(Agent):
+
+        def act(self, state):
+            ...
+
+When you call :func:`~train.Agent.train` or :func:`~train.Agent.test` methods, an action is selected by calling the :func:`~train.Agent.act` method and passed to the environment. Then the environment returns a reward and observation. This entire transition (S, A, R, S') is saved in a :class:`~train.Transitions` object which can be accessed using ``self.transitions``. When an episode terminates, a new episode is started by resetting the environment and agent.
+
+The following callback methods on agent are triggered when an event such as *end of episode* occurs:
+
+.. code:: python
+
+    on_episode_begin
+    on_episode_end
+    on_step_begin
+    on_step_end
+
+There are also separate callback methods that are called either in training or test mode:
+
+.. code:: python
+
+    on_train_episode_begin, on_test_episode_begin
+    on_train_episode_end, on_test_episode_end
+    on_train_step_begin, on_test_step_begin
+    on_train_step_end, on_test_step_end
+
+These methods combined with :class:`~train.Transitions` object in ``self.transitions`` can be used to implement various algorithms. ``on_train_step_end()`` can be used to implement online algorithms such as TD(0) and ``on_train_episode_end()`` can be used to implement algorithms such as Monte Carlo methods.
+
+.. code:: python
+
+    class MyAgent(Agent):
+
+        def on_train_step_end(self):
+            # TD(0)
+            s, a, r, snext, done = self.transitions.last() # get last transition
+            ...
+
+        def on_train_episode_end(self):
+            # MC
+            S, A, R, Snext, dones = self.transitions.get() # get recent transitions
+            self.transitions.reset() # reset transitions for next episode
+            ...
+"""
+
 from itertools import count
 
 import numpy as np
@@ -77,10 +134,18 @@ class BaseAgent(Utils):
         pass
 
     def train(self, *args, **kwargs):
+        """Run the agent in training mode by setting ``self.training = True``.
+
+        See: :func:`~train.Agent.run`
+        """
         self.training = True
         return self.run(*args, **kwargs)
 
     def test(self, *args, **kwargs):
+        """Run the agent in test mode by setting ``self.training = False``.
+
+        See: :func:`~train.Agent.run`
+        """
         self.training = False
         return self.run(*args, **kwargs)
 
@@ -90,6 +155,18 @@ class BaseAgent(Utils):
             max_steps=-1,
             max_episode_steps=-1,
             render=False):
+        """Run the agent in environment.
+
+        Args:
+            episodes (int): Maximum number of episodes to run.
+            env: OpenAI Gym like environment object.
+            max_steps (int): Maximum number of total steps to run.
+            max_episode_steps (int): Maximum number steps to run in each episode.
+            render (bool): Visualize interaction of agent in environment.
+
+        Returns:
+            list: List of cumulative rewards in each episode.
+        """
         env = env or self.env
         max_episode_steps -= 1
         scores = []
@@ -131,6 +208,14 @@ class BaseAgent(Utils):
         return self.act(observation)
 
     def act(self, state):
+        """Select an action by reading the current state.
+
+        Args:
+            state (array_like): Current state of agent based on past observations.
+
+        Returns:
+            An action to take in the environment.
+        """
         raise NotImplementedError()
 
     def _reset(self, observation):
@@ -167,6 +252,17 @@ class BaseAgent(Utils):
 
 
 class Agent(BaseAgent):
+    """Base class for all agents.
+
+    Args:
+        state (int, State): A number representing the number of recent observations to save in state or a custom :class:`~train.State` object.
+        transitions (int, Transitions): A number representing the number of recent transitions to save in history or a custom :class:`~train.Transitions` object.
+        env: OpenAI Gym like environment object.
+        gamma (float): A custom parameter that can be used as discount factor,
+        alpha (float): A custom parameter that can be used as learning rate ,
+        lambd (float): A custom parameter that can be used by various algorithms such as TD(lambda),
+        parameters: List of trainable variables used by agent.
+    """
 
     def __init__(self, state=0, transitions=1, **kwargs):
         if isinstance(state, int):
