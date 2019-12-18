@@ -1,16 +1,9 @@
 """
-All agents should extend the base :class:`~train.Agent` class:
+All agents should extend the base :class:`~train.Agent` class and implement the :func:`~train.Agent.act` method:
 
 .. code:: python
 
     from train import Agent
-
-    class MyAgent(Agent):
-        ...
-
-An agent has to define at least one method :func:`~train.Agent.act`:
-
-.. code:: python
 
     class MyAgent(Agent):
 
@@ -44,15 +37,19 @@ These methods combined with :class:`~train.Transitions` object in ``self.transit
     class MyAgent(Agent):
 
         def on_train_step_end(self):
-            # TD(0)
+            # DQN
             s, a, r, snext, done = self.transitions.last() # get last transition
             ...
 
         def on_train_episode_end(self):
-            # MC
+            # REINFORCE
             S, A, R, Snext, dones = self.transitions.get() # get recent transitions
             self.transitions.reset() # reset transitions for next episode
             ...
+
+.. note::
+
+   Transitions are not recorded when running :func:`~train.Agent.test`.
 """
 
 from itertools import count

@@ -4,7 +4,6 @@ Agents
 .. automodule:: train.agents.base
 .. currentmodule:: train
 
-
 Agent
 *****
 

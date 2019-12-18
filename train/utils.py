@@ -24,7 +24,7 @@ def check_shape(a, b):
     """Check if the shapes of given values match.
 
     Args:
-        a (array_like): An object with shape attribute.
+        a (array_like, tuple): An object with shape attribute or a tuple representing shape.
         b (array_like, tuple): An object with shape attribute or a tuple representing shape.
 
     Raises:

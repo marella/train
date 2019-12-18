@@ -18,3 +18,8 @@ Transitions
 .. autoclass:: Transitions
    :members:
    :inherited-members:
+
+Transition
+**********
+
+.. autoclass:: Transition

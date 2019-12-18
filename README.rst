@@ -15,7 +15,7 @@ Read full documentation `here <https://train.readthedocs.io/>`_.
 Getting Started
 ***************
 
-An agent has to define at least one method ``act`` which takes the current ``state`` as input:
+An agent has to implement the ``act()`` method which takes the current ``state`` as input and returns an action:
 
 .. code:: python
 
@@ -91,6 +91,8 @@ Alternatively, install from source:
     pip install -e .
 
 To run examples and tests, install from source.
+
+Other libraries such as Gym_ and TensorFlow_ should be installed separately.
 
 Examples
 ********
