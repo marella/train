@@ -65,7 +65,7 @@ Alternatively, visualize how it performs:
 
     scores = agent.test(episodes=10, render=True)
 
-To learn more about how to build an agent that learns see Agent_ documentation.
+To learn more about how to build an agent that learns see agents_ documentation.
 
 See examples_ directory to see implementations of some algorithms (DQN, A3C, PPO etc.) in TensorFlow.
 
@@ -125,7 +125,7 @@ and run:
 
     pytest tests
 
-.. _Agent: https://train.readthedocs.io/en/latest/agents.html
+.. _agents: https://train.readthedocs.io/en/latest/agents.html
 .. _examples: https://github.com/marella/train/tree/master/examples
 .. _Gym: https://gym.openai.com/docs/
 .. _TensorFlow: https://www.tensorflow.org/install
