@@ -67,7 +67,7 @@ Alternatively, visualize how it performs:
 
 To learn more about how to build an agent that learns see agents_ documentation.
 
-See examples_ directory to see implementations of some algorithms (DQN, A3C, PPO etc.) in TensorFlow.
+See examples_ directory to see implementations of some algorithms (DQN, A3C, PPO etc.) in TensorFlow and PyTorch.
 
 Installation
 ************
@@ -92,12 +92,12 @@ Alternatively, install from source:
 
 To run examples and tests, install from source.
 
-Other libraries such as Gym_ and TensorFlow_ should be installed separately.
+Other libraries such as Gym_, TensorFlow_ and PyTorch_ should be installed separately.
 
 Examples
 ********
 
-To run examples, install TensorFlow_ and install dependencies:
+To run examples, install TensorFlow_, PyTorch_ and install other dependencies:
 
 ::
 
@@ -129,3 +129,4 @@ and run:
 .. _examples: https://github.com/marella/train/tree/master/examples
 .. _Gym: https://gym.openai.com/docs/
 .. _TensorFlow: https://www.tensorflow.org/install
+.. _PyTorch: https://pytorch.org/get-started
