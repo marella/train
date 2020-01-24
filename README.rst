@@ -67,7 +67,7 @@ Alternatively, visualize how it performs:
 
 To learn more about how to build an agent that learns see agents_ documentation.
 
-See examples_ directory to see implementations of some algorithms (DQN, A3C, PPO etc.) in TensorFlow and PyTorch.
+See examples_ directory to see implementations of some algorithms (DQN, A3C, PPO etc.) created using TensorFlow, PyTorch and NN_ libraries.
 
 Installation
 ************
@@ -92,7 +92,7 @@ Alternatively, install from source:
 
 To run examples and tests, install from source.
 
-Other libraries such as Gym_, TensorFlow_ and PyTorch_ should be installed separately.
+Other libraries such as Gym_, TensorFlow_, PyTorch_ and NN_ should be installed separately.
 
 Examples
 ********
@@ -130,3 +130,4 @@ and run:
 .. _Gym: https://gym.openai.com/docs/
 .. _TensorFlow: https://www.tensorflow.org/install
 .. _PyTorch: https://pytorch.org/get-started
+.. _NN: https://github.com/marella/nn

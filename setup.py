@@ -26,6 +26,7 @@ setup(
         'examples': [
             'gym',
             'matplotlib',
+            'nn',
         ],
         'tests': [
             'pytest',
